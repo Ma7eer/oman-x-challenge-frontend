@@ -39,7 +39,7 @@ const InvoiceUpload = () => {
     data.append("file", file);
 
     axios
-      .post(SERVER_URL, data, {})
+      .post(SERVER_URL + "/upload-invoice", data, {})
       .then((res) => {
         setBalanceDue(res.data.data.balanceDue);
         setCompanyName(res.data.data.companyName);
