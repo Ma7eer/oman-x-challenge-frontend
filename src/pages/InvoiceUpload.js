@@ -53,6 +53,18 @@ const InvoiceUpload = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleInvoiceFormSubmit = (e) => {
+    e.preventDefault()
+    let bodyData ={
+      companyName: companyName,
+      balanceDue: balanceDue,
+      dueDate: dueDate,
+      invoiceDate: invoiceDate,
+      invoiceNo: invoiceNo
+    }
+    axios.post(SERVER_URL + '/new-invoice', bodyData).then(res => console.log(res)).catch(err => console.log(err))
+  }
+
   return (
     <Container>
       <Header text={"Select an invoice to upload"} />
@@ -97,6 +109,7 @@ const InvoiceUpload = () => {
               padding: "18px",
             }}
             className="card"
+            onSubmit={handleInvoiceFormSubmit}
           >
             <h1 className="mb-3">Generated Form</h1>
             <div
@@ -194,7 +207,7 @@ const InvoiceUpload = () => {
                 onChange={(e) => setBalanceDue(e.target.value)}
               />
             </div>
-            <button className="btn btn-success">Verify</button>
+            <button className="btn btn-success" >Verify</button>
           </form>
         </div>
       )}
